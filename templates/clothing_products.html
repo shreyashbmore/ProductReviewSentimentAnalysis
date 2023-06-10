@@ -1,0 +1,296 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Product Review Sentiment Analysis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css')}}">
+    <link rel="stylesheet" href="https://code.jquery.com/jquery-3.4.1.slim.js">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.js">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.js">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
+
+    <style>
+        .footer-basic {
+            padding: 40px 0;
+            background-color: black;
+            color: white;
+        }
+
+        .footer-basic ul {
+            padding: 0;
+            list-style: none;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .footer-basic li {
+            padding: 0 10px;
+        }
+
+        .footer-basic ul a {
+            color: inherit;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .footer-basic ul a:hover {
+            opacity: 1;
+        }
+
+        .footer-basic .social {
+            text-align: center;
+            padding-bottom: 25px;
+        }
+
+        .footer-basic .social>a {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            display: inline-block;
+            text-align: center;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            margin: 0 8px;
+            color: inherit;
+            opacity: 0.75;
+        }
+
+        .footer-basic .social>a:hover {
+            opacity: 0.9;
+        }
+
+        .footer-basic .copyright {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 13px;
+            color: #aaa;
+            margin-bottom: 0;
+        }
+
+        .ftco-section {
+            background-color: black;
+            margin-top: 100px;
+        }
+
+        .image {
+            margin-left: 15px;
+            margin-right: 15px;
+            margin-top: 30px;
+            margin-bottom: px;
+        }
+
+        /* h3 {
+           text-align: left;
+           margin-top: 50px;
+           margin-bottom: 0px;
+        }  */
+
+        .button {
+            border: none;
+            color: black;
+            padding: 16px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+        .button1 {
+            background-color: black;
+            color: white;
+            font-size: 15px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            border: 2px solid black;
+        }
+
+        .button1:hover {
+            background-color: #4CAF50;
+            color: white;
+            border: 2px solid #4CAF50;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .image {
+            margin-left: 15px;
+            margin-right: 15px;
+            margin-top: 100px;
+            margin-bottom: px;
+            padding-left: 10px;
+        }
+
+        .text {
+            font-size: 20px;
+            padding-left: 20px;
+        }
+
+        .row {
+            margin-top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">PRSA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/category">Categories</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+
+    <div class="container">
+        <div class="image">
+            <img src="static/pexels-mart-production-9558581.jpg" alt="This is my image." height="600px" width="600px" />
+        </div>
+        <div class="text">
+            <h5>DressBerry<br>
+                Unisex Solid Pure Cotton T-shirt</h5>
+            <sub>EMI starting from Rs.33/month</sub>
+            <hr style="color:black
+                ">
+
+            <h3>Price : ₹699</h3>
+            <hr>
+
+            <sub style="color
+                    : grey">
+
+                <b>PRODUCT DETAILS</b>
+                Black Tshirt for women<br>
+                Solid <br>
+                Regular length<br>
+                Round neck<br>
+                Short, regular sleeves<br>
+                Knitted pure cotton fabric<br>
+            </sub>
+            <br> <br>
+            <!---
+            <button class="button button1">Add to Cart</button>
+
+            <button class="button button1">Buy Now</button>
+        
+            <section>
+                <p>
+                    <button class="button button1" type="button" data-toggle="collapse" data-target="#collapseExample"
+                        aria-expanded="false" aria-controls="collapseExample">
+                        Reviews
+                    </button>
+
+                    <a href="/reviewpage">
+                        <button class="button button1">Review Summary</button>
+                    </a>
+                </p>
+
+                <div class="collapse" id="collapseExample">
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>Great Product</h4>
+                                <sub>The product is really amazing. It came in great quality same as shown in the
+                                    picture. Overall it's worth every peny.</sub>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>Great Product</h4>
+                                <sub>Very comfortabel to wear, suits for every occassion</sub>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>Awful</h4>
+                                <sub>Hate it, want my refund as early as possible </sub>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        -->
+            <!--  Code for Reviews and to go to anyalse page
+            to be copied to every page -->
+       
+            <form action="/clothing_products" method="POST">
+                <label for="user_input">Enter a sentence:</label><br>
+                <input class = "textbox" type="textarea" cols="20" id="user_input" name="user_input"></textarea><br><br>
+                <button class="button button1" type="submit" >Post review</button>
+            </form>
+
+            
+            <a href="/review_analysis">
+                <button class="button button1">Review Analysis</button>
+                </a>
+
+              <!-- Code for Reviews and to go to anyalse page
+                Code end  -->
+
+        </div>
+    </div>
+
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center">
+                    <h2>TITLE</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer-basic">
+        <footer>
+            <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i
+                        class="icon ion-social-snapchat"></i></a><a href="#"><i
+                        class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a>
+            </div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Home</a></li>
+                <li class="list-inline-item"><a href="#">Services</a></li>
+                <li class="list-inline-item"><a href="#">About</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            </ul>
+            <p class="copyright">Company Name © 2018</p>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
