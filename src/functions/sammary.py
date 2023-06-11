@@ -11,7 +11,7 @@ def generate_summary(reviews):
     return summaries
 
 # OpenAI API configuration
-openai.api_key = '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'  # Replace with your OpenAI API key
+openai.api_key = 'YOUR_API_KEY'  # Replace with your OpenAI API key
 
 def ask_chat_gpt(question, context):
     response = openai.Completion.create(
