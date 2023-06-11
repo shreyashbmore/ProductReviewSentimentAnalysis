@@ -3,7 +3,7 @@ import openai
 import json
 
 # OpenAI API configuration
-openai.api_key = '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'  # Replace with your OpenAI API key
+openai.api_key = 'YOUR_API_KEY'  # Replace with your OpenAI API key
 
 # Initialize the summarization pipeline outside the function
 
