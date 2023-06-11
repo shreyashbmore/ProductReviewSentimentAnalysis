@@ -1,7 +1,7 @@
 import openai
 
 # Set up your OpenAI API credentials
-openai.api_key = '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'
+openai.api_key = 'YOUR_API_KEY'
 
 
 def sarcasm_correction(sentence):
