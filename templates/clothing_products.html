@@ -253,6 +253,11 @@
                 <input class = "textbox" type="textarea" cols="20" id="user_input" name="user_input"></textarea><br><br>
                 <button class="button button1" type="submit" >Post review</button>
             </form>
+            {% if result %}
+            <p class="analysis-result"><strong>Detected sentiment:</strong> {{ result.label }}
+              ({{ (result.confidence * 100) | round | int }}% confidence)<br>
+              <small>Normalized text: {{ result.normalized }}</small></p>
+            {% endif %}
 
             
             <a href="/review_analysis">

@@ -1,7 +1,9 @@
+import os
+
 import requests
 
 def execute_get_api(product_id):
-    url = "https://oswkj1ydx8.execute-api.ap-northeast-1.amazonaws.com/dev/review"  # Replace with your API endpoint URL
+    url = os.environ.get("REVIEW_API_URL", "https://oswkj1ydx8.execute-api.ap-northeast-1.amazonaws.com/dev/review")
 
     # Query parameters
     params = {
@@ -9,7 +11,7 @@ def execute_get_api(product_id):
     }
 
     try:
-        response = requests.get(url, params=params)
+        response = requests.get(url, params=params, timeout=10)
         response.raise_for_status()  # Raise an exception for non-2xx status codes
 
         # Process the response data if needed
@@ -18,7 +20,8 @@ def execute_get_api(product_id):
         return data
 
     except requests.exceptions.RequestException as err:
-        return err
+        print("API request failed:", err)
+        return []
 
 # Call the function to execute the GET API
 # product_id = "1234"  # Replace with the desired product ID

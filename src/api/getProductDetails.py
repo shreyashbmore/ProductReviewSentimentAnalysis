@@ -10,7 +10,7 @@ def get_product_details(category, product_id=None):
         params["product_id"] = product_id
 
     try:
-        response = requests.get(url, params=params)
+        response = requests.get(url, params=params, timeout=10)
         response.raise_for_status()  # Raise an exception for non-2xx status codes
 
         data = response.json()
@@ -19,8 +19,5 @@ def get_product_details(category, product_id=None):
     except requests.exceptions.RequestException as err:
         print("API request failed:", err)
 
-# Example usage
-category = "electronics"
-product_id = "1234"
-results = get_product_details(category, product_id)
-print(results)
+if __name__ == "__main__":
+    print(get_product_details("electronics", "1234"))

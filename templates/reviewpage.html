@@ -225,9 +225,9 @@
         <canvas id="myChart" style="width:50%; max-width:600px;height:50%;"></canvas>
 
         <script>
-            var xValues = ["Positive", "Negative", "Neutral"];
-            var yValues = [3,4,1];
-            var barColors = "orange";
+            var xValues = ["Positive ({{ sentiment_pct['positive'] }}%)", "Negative ({{ sentiment_pct['negative'] }}%)", "Neutral ({{ sentiment_pct['neutral'] }}%)"];
+            var yValues = [{{ sentiment_count['positive'] }}, {{ sentiment_count['negative'] }}, {{ sentiment_count['neutral'] }}];
+            var barColors = ["#2e7d32", "#c62828", "#757575"];
     
             new Chart("myChart", {
                 type: "bar",
@@ -239,7 +239,8 @@
                     }]
                 },
                 options: {
-                    legend: { display: true },
+                    legend: { display: false },
+                    scales: { yAxes: [{ ticks: { beginAtZero: true, precision: 0 } }] },
                     title: {
                         display: true,
                         text: "Review Analysis"
@@ -294,7 +295,7 @@
 
         <div>
           {% for review in reviews %}
-          <h4>{{review["review"]}}</h4>
+          <h4>{{review["review"]}} <small>({{ review["sentiment"] }}{% if review.get("confidence") %}, {{ (review["confidence"] * 100) | round | int }}% confident{% endif %})</small></h4>
           {% endfor %}
         </div>
 
