@@ -78,7 +78,7 @@ flowchart LR
 
 | System | TweetEval | K8 | Amazon (out-of-domain) |
 |---|---|---|---|
-| v1 pipeline (without the retired LLM step) | 0.527 | 0.707 | **0.415** |
+| v1 pipeline  | 0.527 | 0.707 | **0.415** |
 | VADER, no slang handling | 0.526 | 0.707 | 0.415 |
 | TF-IDF + logistic regression | 0.613 | 0.871 | 0.322 |
 | **Hybrid (production)** | **0.617** | **0.872** | 0.355 |
