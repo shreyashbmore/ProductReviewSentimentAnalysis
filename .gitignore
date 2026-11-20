@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.vs/
+.vscode/
+.env
+venv/
+.venv/
+data/raw/
+data/processed/
+data/reviews_local.json
+reports/eval_log.txt

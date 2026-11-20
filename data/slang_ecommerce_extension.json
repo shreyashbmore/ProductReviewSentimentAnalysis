@@ -1,0 +1,35 @@
+{
+  "_about": "E-commerce / Indian-English extension to the v1 slang list (data/slangWords.json). Built by mining frequent out-of-vocabulary tokens from the TRAINING splits only (K8 reviews train, TweetEval train) and manually mapping the unambiguous ones. Test splits were never inspected. 'override' entries replace v1 mappings that are wrong for product reviews; 'remove' entries delete v1 mappings that collide with product vocabulary.",
+  "override": {
+    "nyc": "nice"
+  },
+  "remove": ["hp", "pm", "ms", "ft", "hr", "pt", "pp", "fig", "sq", "cv", "lb", "lbs"],
+  "hinglish": {
+    "bekar": "useless", "bekaar": "useless",
+    "bakwas": "rubbish", "bakwaas": "rubbish",
+    "kharab": "defective",
+    "accha": "good", "acha": "good", "achha": "good",
+    "thik": "okay", "theek": "okay",
+    "wasool": "worth the money", "vasool": "worth the money",
+    "nahi": "not", "nhi": "not", "nai": "not"
+  },
+  "misspellings": {
+    "wrost": "worst", "worest": "worst", "wrst": "worst",
+    "awsome": "awesome", "awsm": "awesome", "osm": "awesome", "awasome": "awesome", "awesum": "awesome",
+    "gud": "good", "gd": "good", "nic": "nice", "vry": "very",
+    "bettery": "battery", "battry": "battery", "bettry": "battery", "battary": "battery",
+    "camra": "camera", "cemera": "camera", "selfi": "selfie",
+    "phn": "phone", "fone": "phone", "mobail": "mobile", "mobil": "mobile", "divice": "device",
+    "avarage": "average", "avg": "average",
+    "clearity": "clarity", "prise": "price", "recieved": "received",
+    "goodbut": "good but"
+  },
+  "informal": {
+    "dnt": "do not", "donot": "do not",
+    "bcz": "because", "bcoz": "because", "coz": "because", "cuz": "because", "bc": "because",
+    "hv": "have", "pls": "please", "plz": "please", "thnx": "thanks", "thanx": "thanks",
+    "luv": "love", "sux": "sucks",
+    "gonna": "going to", "wanna": "want to", "gotta": "got to", "kinda": "kind of",
+    "bday": "birthday", "vfm": "value for money"
+  }
+}
