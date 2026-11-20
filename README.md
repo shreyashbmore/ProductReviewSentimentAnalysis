@@ -6,7 +6,7 @@ The project has two versions:
 
 | | v1 (original release) | v2 (current) |
 |---|---|---|
-| Classifier | VADER lexicon rules, overridden by OpenAI `text-davinci-003` | Trained hybrid model: word + character TF-IDF + VADER features → logistic regression |
+| Classifier | VADER lexicon rules | Trained hybrid model: word + character TF-IDF + VADER features → logistic regression |
 | Informal language | 227-entry slang/abbreviation dictionary | Dictionary audited and extended with e-commerce and Hinglish terms mined from training data |
 | Evaluation | Manual testing | 3 public test sets, 13 configurations, paired-bootstrap significance tests |
 | Recommendation | `text-davinci-003` prompt | Deterministic summary from the sentiment distribution and frequent terms |
